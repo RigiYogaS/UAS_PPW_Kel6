@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Review Page</title>
+    <link rel="stylesheet" href="/guest/css/review.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <nav>
+        <div class="logo" >
+            <a href="index.html">
+                <img src="/assets/logos/logo.svg" alt="Hero">
+                <h2>Morev</h2>
+            </a>
+        </div>
+        <ul>
+            <li><a href="film.html">Films</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="review.html">Reviews</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <a href="/auth/login.html "><button type="button">Sign In</button></a>
+    </nav>
+    <main>
+    <div class="container">
+        <h2>My Review</h2>
+        <div class="search">
+            <i class='bx bx-search'></i>
+            <input type="text" placeholder="Search your review here...">
+        </div>
+        <div class="wrap">
+            <img src="/assets/posters/ShawshankRedemption.jpg" alt="ShawshankRedemption">
+            <div class="desc">
+                <div class="rating">
+                    <h3>The Shawshank Redemption</h3>
+                        <div class="star">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                        <p class="rating">4.7/5</p>
+                        </div>
+                </div>
+                <p class="review-text">"The Shawshank Redemption is a masterpiece.”</p>
+                <a href="addreview.html" class="see-review">See Review</a>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <ul>
+            <li><a href=""><i class='bx bxl-facebook-circle'></i></a></li>
+            <li><a href=""><i class='bx bxl-tiktok'></i></a></li>
+            <li><a href=""><i class='bx bxl-instagram-alt'></i></a></li>
+            <li><a href=""><i class='bx bxl-youtube'></i></a></li>
+        </ul>
+        <p>
+            <small>Copyright © 2024 Morev. All rights reserved.</small>
+        </p>
+    </footer>
+    <div class="popup">
+        <p>Sign in first to view the reviews</p>
+        <a href="Signinmorev.html"><button type="button">Click here to sign in</button></a>
+    </div>
+
+    <script href="review.js"></script>
+</body>
+</html>

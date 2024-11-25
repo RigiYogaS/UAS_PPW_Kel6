@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Morev - Film Page</title>
+        <link rel="stylesheet" a href="/dashboard/css/film.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://boxicons.com/?query=hea">
+    <body>
+        <nav>
+            <div class="logo" >
+                <a href="index.html">
+                    <img src="/assets/logos/logo.svg" alt="Hero">
+                    <h2>Morev</h2>
+                </a>
+            </div>
+            <ul>
+                <li><a href="film.html">Films</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="review.html">Reviews</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+             <div class="profile">
+            <p id="name">User</p>
+            <i class='bx bx-chevron-down'></i>
+        </div>
+        </nav>
+    <main>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Type your film or series here.">
+            <select id="filterGenre" onchange="filterFilms()">
+                <option value="">Filter</option>
+                <option value="">Rating</option>
+                <option value="">Year</option>
+                <option value="">Genre</option>
+                <option value="">Popular</option>
+            </select>
+        </div>
+
+        <section class="top-rated">
+            <h2>Top Rated Films</h2>
+            <div class="film-list">
+                <div class="film" onclick="filmClick('The Shawshank Redemption')">
+                    <a href="addreview.html"><img src="/assets/posters/ShawshankRedemption.jpg" alt="The Shawshank Redemption"></a>
+                    <p class="Rating"><i class='bx bxs-star' undefined ></i>   4,9/5   |   
+                        <i class='bx bxs-heart'></i>   700K</p>
+                    <p class="film-title"><a href="">The Shawshank Redemption</a></p>
+                </div>
+                <div class="film" onclick="filmClick('500 Days Of Summer')">
+                    <img src="/assets/posters/500 Days Of Summer.jpg" alt="500 Days Of Summer">
+                    <p class="Rating"><i class='bx bxs-star' undefined ></i>   4,9/5   |   
+                        <i class='bx bxs-heart'></i>   670K</p>
+                    <p class="film-title"><a href="">500 Day Of Summer</a></p>
+                </div>
+                <div class="film" onclick="filmClick('Hereditary')">
+                    <img src="/assets/posters/hereditary.jpg" alt="Hereditary">
+                    <p class="Rating"><i class='bx bxs-star' undefined ></i>   4,9/5   |   
+                        <i class='bx bxs-heart'></i>   660K</p>
+                    <p class="film-title"><a href="">Hereditary</a></p>
+                </div>
+                <div class="film" onclick="filmClick('Evil Dead Rise')">
+                    <img src="/assets/posters/Evil Dead Rise.jpg" alt="Evil Dead Rise">
+                    <p class="Rating"><i class='bx bxs-star' undefined ></i>   4,9/5   |   
+                        <i class='bx bxs-heart'></i>   550K</p>
+                    <p class="film-title"><a href="">Evil Dead Rise</a></p>
+                </div>
+                <div class="film" onclick="filmClick('The Human Centipede')">
+                    <img src="/assets/posters/The Human Centipede.jpg" alt="The Human Centipede">
+                    <p class="Rating"><i class='bx bxs-star' undefined ></i>   4,9/5   |   
+                        <i class='bx bxs-heart'></i>   500K</p>
+                    <p class="film-title"><a href="">The Human Centipede</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+        <footer>
+            <ul>
+                <li><a href=""><i class='bx bxl-facebook-circle' ></i></a></box-icon></li>
+                <li><a href=""><i class='bx bxl-tiktok' ></i></a></li>
+                <li><a href=""><i class='bx bxl-instagram-alt'></i></a></li>
+                <li><a href=""><i class='bx bxl-youtube' ></i></a></li>
+            </ul>
+            <p>
+                <small>Copyright © 2024 Morev. All rights reserved.</small>
+            </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  font-family: "poppins", sans-serif;
+  color: #ecdfcc;
+  max-width: 2000px;
+  margin-inline: auto;
+  overflow: visible;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(to bottom, #000000 60%, #00000000);
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem;
+  position: fixed;
+  z-index: 10;
+}
+
+nav .logo a {
+  display: flex;
+  text-decoration: none;
+  color: #ecdfcc;
+  align-items: center;
+}
+
+nav .logo a img {
+  margin-right: 25px;
+  width: 95px;
+}
+
+nav .logo a h2 {
+  color: #ecdfcc;
+  font-size: 35px;
+}
+
+ul {
+  display: flex;
+  gap: 75px;
+  justify-content: space-between;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #ecdfcc;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul li a:hover {
+  color: #a3a3a3;
+}
+
+nav button {
+  background-color: #ffffff;
+  color: #212121;
+  height: 40px;
+  width: 110px;
+  padding: 2px 5px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+nav button {
+  text-decoration: none;
+  color: #212121;
+}
+
+nav button:hover {
+  background-color: #697565;
+  color: white;
+}
+  
+  .content {
+    justify-content: space-between;
+    padding: 40px;
+    margin: 0;
+    position: relative;
+    top: 5em;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .gabungan {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+  }
+  .news {
+    width: 50%;
+    margin-left: 20px;
+  }
+  
+  .upcoming-films {
+    width: 40%;
+  }
+  
+  .news h2,
+  .upcoming-films h2 {
+    color: #ecdfcc;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .news-item,
+  .film-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid #ecdfcc;
+  }
+  
+  .news-item h3 {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px; 
+    font-weight: 500; 
+    line-height: 1.3em;
+  }
+  
+  .news-item p {
+    font-size: 14px; 
+    color: #ecdfcc;
+    margin-top: 5px;
+  }
+  
+  .news-item img {
+    width: 390px;
+    height: 150px;
+    margin-right: 20px;
+    border-radius: 20px;
+  }
+  
+  .news-item div {
+    max-width: calc(100% - 170px);
+    position: relative;
+    bottom: 0px;
+    height: 200px;
+  }
+  .news-item div p {
+    margin: 2px 0;
+  }
+
+  .news-item div h3 a {
+    display: flex ;
+    height: 5em;
+  }
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #000dc6d3;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .film-item {
+    border: 2px solid #ecdfcc;
+    border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .film-item img {
+    width: 125px;
+    height: 175px;
+    border-radius: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  .film-item div {
+    max-width: calc(100% - 150px); 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+  
+  .film-item:nth-child(odd) img {
+    order: 1;
+    margin-left: 20px;
+  }
+  .film-item:nth-child(even) img {
+    order: -1;
+    margin-right: 20px;
+  }
+  
+  .film-item h3 {
+    color: #ffffff; 
+    text-decoration: none;
+    font-size: 26px; 
+    font-weight: 500; 
+    margin-bottom: 15px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .film-item .watch {
+    font-size: 15px; 
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .film-item p {
+    font-size: 12px; 
+    margin: 2px 0;
+  }
+  
+  .film-item div p {
+    margin: 2px 0;
+  }
+  
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    bottom: -650px;
+    width: 100%;
+    height: 180px;
+    background-color: #3c3d37;
+    overflow: visible;
+  }
+  
+  footer ul li {
+    width: 30px;
+    margin-bottom: 30px;
+  }
+  
+  footer ul li i {
+    font-size: 30px;
+  }
+  
+  footer li i:hover {
+    color: #a3a3a3;
+  }
+  
