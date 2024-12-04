@@ -1,3 +1,6 @@
+<?php
+$this->db = db_connect();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Review Page</title>
     <link rel="stylesheet" href="<?= base_url('/cssDashboard/review.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.webp') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -47,51 +52,83 @@
                 <h2>Morev</h2>
             </a>
         </div>
-        <ul>
-            <li><a href="<?= base_url('/dashboard/film'); ?>">Film</a></li>
-            <li><a href="<?= base_url('/dashboard/news'); ?>">Berita</a></li>
-            <li><a href="<?= base_url('/dashboard/review'); ?>">Review</a></li>
-            <li><a href="<?= base_url('/dashboard/about'); ?>">Tentang Kami</a></li>
-        </ul>
         <?php if (session()->get('isLoggedIn')) : ?>
-            <div class="profile">
-                <ul>
-                    <li><a href="<?= base_url('/auth/logout'); ?>" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
-                </ul>
+            <ul>
+                <li><a href="<?= base_url('/dashboard/film'); ?>">Film</a></li>
+                <li><a href="<?= base_url('/dashboard/news'); ?>">News</a></li>
+                <li><a href="<?= base_url('/dashboard/review'); ?>">My Review</a></li>
+                <li><a href="<?= base_url('/dashboard/about'); ?>">About</a></li>
+            </ul>
+            <div class="dropdownnav" style="padding-right:100px">
+                <b style="color:green"><?= ucfirst(session('username')) ?></b>
+                <div class="dropdownnav-content">
+                    <ul>
+                        <li><a href="<?= base_url('/auth/logout'); ?>" style="color:black" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
+                    </ul>
+                </div>
             </div>
+
         <?php else : ?>
+            <ul>
+                <li><a href="<?= base_url('/guest/film'); ?>">Film</a></li>
+                <li><a href="<?= base_url('/guest/news'); ?>">News</a></li>
+                <li><a href="<?= base_url('/guest/review'); ?>">Review</a></li>
+                <li><a href="<?= base_url('/guest/about'); ?>">About</a></li>
+            </ul>
             <a href="<?= base_url('/auth/login'); ?>"><button type="button">Sign In</button></a>
         <?php endif; ?>
     </nav>
     <main>
         <div class="container">
             <h2>My Review</h2>
-            <div class="wrap">
-                <img src="<?= base_url('/assets/posters/agak laen.jpg'); ?>" alt="Agak Laen">
-                <div class="desc">
-                    <div class="rating">
-                        <h3>Agak Laen</h3>
-                        <div class="star">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                            <p class="rating">4./5</p>
+            <?php
+            foreach ($review as $ulasan) :
+                $idfilm = $ulasan['idfilm'];
+                $query = $this->db->query("
+    SELECT AVG(rating) AS average 
+    FROM review 
+    JOIN film ON review.idfilm = film.idfilm 
+    JOIN pengguna ON review.idpengguna = pengguna.idpengguna 
+    WHERE review.idfilm = ?", [$idfilm]);
+
+                $result = $query->getRowArray();
+                $average = $result['average'] ?? 0;
+                $maxStars = 5;
+                $fullStars = floor($average);
+                $emptyStars = $maxStars - $fullStars;
+            ?>
+                <div class="wrap" style="padding-top:75px">
+                    <img src="<?= base_url('/assets/posters/' . $ulasan['foto']); ?>" alt="Agak Laen">
+                    <div class="desc">
+                        <div class="rating">
+                            <h3><?= $ulasan['judul'] ?></h3>
+                            <div class="star">
+                                <?php for ($i = 0; $i < $fullStars; $i++): ?>
+                                    <i class='bx bxs-star'></i> <!-- Full star -->
+                                <?php endfor; ?>
+
+                                <?php for ($i = 0; $i < $emptyStars; $i++): ?>
+                                    <i class='bx bx-star'></i> <!-- Empty star -->
+                                <?php endfor; ?>
+                            </div>
                         </div>
+                        <p class="review-text">"<?= $ulasan['ulasan'] ?>”</p>
+                        <a href="<?= base_url('/dashboard/addreview/' . $ulasan['idfilm']); ?>" class="btn btn-primary">See Review</a>
                     </div>
-                    <p class="review-text">"Agak Laen is a masterpiece.”</p>
-                    <a href="<?= base_url('/dashboard/addreview'); ?>" class="see-review">See Review</a>
                 </div>
-            </div>
+                <hr>
+            <?php
+            endforeach; ?>
+            <br>
+            <br>
+            <br>
         </div>
     </main>
     <footer>
         <ul>
-            <li><a href=""><i class='bx bxl-facebook-circle'></i></a></li>
-            <li><a href=""><i class='bx bxl-tiktok'></i></a></li>
-            <li><a href=""><i class='bx bxl-instagram-alt'></i></a></li>
-            <li><a href=""><i class='bx bxl-youtube'></i></a></li>
+            <li><a href="https://www.tiktok.com/@morev6_?_t=8rpOLW0rMfp&_r=1"><i class='bx bxl-tiktok'></i></a></li>
+            <li><a href="https://www.instagram.com/morev_6?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class='bx bxl-instagram-alt'></i></a></li>
+            <li><a href="https://youtube.com/@morev-f2r?si=Sdk1sgYjfLgk6mdC"><i class='bx bxl-youtube'></i></a></li>
         </ul>
         <p>
             <small>Copyright © 2024 Morev. All rights reserved.</small>
