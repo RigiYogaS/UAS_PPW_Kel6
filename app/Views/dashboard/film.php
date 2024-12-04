@@ -1,3 +1,6 @@
+<?php
+$this->db = db_connect();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morev - Film Page</title>
     <link rel="stylesheet" a href="<?= base_url('/cssDashboard/film.css?v=' . time()); ?>">
+    <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.webp') ?>">
     <link rel=" preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -49,116 +54,100 @@
         <?php if (session()->get('isLoggedIn')) : ?>
             <ul>
                 <li><a href="<?= base_url('/dashboard/film'); ?>">Film</a></li>
-                <li><a href="<?= base_url('/dashboard/news'); ?>">Berita</a></li>
-                <li><a href="<?= base_url('/dashboard/review'); ?>">Review</a></li>
-                <li><a href="<?= base_url('/dashboard/about'); ?>">Tentang Kami</a></li>
+                <li><a href="<?= base_url('/dashboard/news'); ?>">News</a></li>
+                <li><a href="<?= base_url('/dashboard/review'); ?>">My Review</a></li>
+                <li><a href="<?= base_url('/dashboard/about'); ?>">About</a></li>
             </ul>
-            <div class="profile">
-                <ul>
-                    <li><a href="<?= base_url('/auth/logout'); ?>" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
-                </ul>
+            <div class="dropdownnav" style="padding-right:100px">
+                <b style="color:green"><?= ucfirst(session('username')) ?></b>
+                <div class="dropdownnav-content">
+                    <ul>
+                        <li><a href="<?= base_url('/auth/logout'); ?>" style="color:black" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
+                    </ul>
+                </div>
             </div>
+
         <?php else : ?>
             <ul>
                 <li><a href="<?= base_url('/guest/film'); ?>">Film</a></li>
-                <li><a href="<?= base_url('/guest/news'); ?>">Berita</a></li>
+                <li><a href="<?= base_url('/guest/news'); ?>">News</a></li>
                 <li><a href="<?= base_url('/guest/review'); ?>">Review</a></li>
-                <li><a href="<?= base_url('/guest/about'); ?>">Tentang Kami</a></li>
+                <li><a href="<?= base_url('/guest/about'); ?>">About</a></li>
             </ul>
             <a href="<?= base_url('/auth/login'); ?>"><button type="button">Sign In</button></a>
         <?php endif; ?>
     </nav>
     <main>
         <section class="top-rated">
+            <div class="container" style="padding-left:200px;padding-right:200px">
+                <div class="form-group">
+                    <form method="post" action="/carifilm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="keyword" value="<?= $keyword ?>" style="border-radius: 100px;">
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="genre" style="border-radius: 100px;">
+                                    <option value="">All Genre</option>
+                                    <option <?php if ($keyword == 'Comedy') echo 'selected'; ?> value="Komedi">Comedy</option>
+                                    <option <?php if ($keyword == 'Drama') echo 'selected'; ?> value="Drama">Drama</option>
+                                    <option <?php if ($keyword == 'Romantis') echo 'selected'; ?> value="Romantis">Romance</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br>
             <h2>Top Rated Films</h2>
             <div class="film-list">
-                <div class="film">
-                    <!-- onclick="filmClick('The Shawshank Redemption')" -->
-                    <a href="<?= base_url('/dashboard/addreview') ?>">
-                        <img src="<?= base_url('/assets/posters/agak laen.jpg'); ?>" alt="Agak Laen"></a>
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 700K
-                    </p>
-                    <p class="film-title">Agak Laen</p>
-                </div>
-                <div class="film">
-                    <!--onclick="filmClick('500 Days Of Summer')" -->
-                    <img src="<?= base_url('/assets/posters/dua hati biru.jpg'); ?>" alt="Dua Hati Biru">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 670K
-                    </p>
-                    <p class="film-title">Dua Hati Biru</p>
-                </div>
-                <div class="film">
-                    <!-- onclick="filmClick('Hereditary')" -->
-                    <img src="<?= base_url('/assets/posters/ipar adalah maut.jpg'); ?>" alt="Ipar Adalah Maut">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 660K
-                    </p>
-                    <p class="film-title">Ipar Adalah Maut</p>
-                </div>
-                <div class="film">
-                    <!-- onclick="filmClick('Evil Dead Rise')" -->
-                    <img src="<?= base_url('/assets/posters/kang mak.jpg'); ?>" alt="kang Mak">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 550K
-                    </p>
-                    <p class="film-title">Kang Mak From Pee Mak</p>
-                </div>
-                <div class="film">
-                    <!-- onclick="filmClick('The Human Centipede')" -->
-                    <img src="<?= base_url('/assets/posters/siksa kubur.jpg'); ?>" alt="Siksa Kubur">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">Siksa Kubur</p>
-                </div>
-                <div class="film">
-                    <img src="<?= base_url('/assets/posters/ancika.jpg'); ?>" alt="Ancika">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">Ancika: Dia yang Bersamaku 1995</p>
-                </div>
-                <div class="film">
-                    <img src="<?= base_url('/assets/posters/borderless fog.jpg'); ?>" alt="Borderless Fog">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">Kabut Berduri</p>
-                </div>
-                <div class="film">
-                    <img src="<?= base_url('/assets/posters/dancing villages.jpg'); ?>" alt="Dancing Villages">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">Badarawuhi di Desa Penari</p>
-                </div>
-                <div class="film">
-                    <img src="<?= base_url('/assets/posters/the architecture of love.jpg'); ?>"
-                        alt="The Architecture of Love">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">The Architecture of Love</p>
-                </div>
-                <div class="film">
-                    <img src="<?= base_url('/assets/posters/vina.jpg'); ?>" alt="Vina">
-                    <p class="Rating"><i class='bx bxs-star' undefined></i> 4,9/5 |
-                        <i class='bx bxs-heart'></i> 500K
-                    </p>
-                    <p class="film-title">Vina: Sebelum 7 Hari</p>
-                </div>
+                <?php $i = 1; ?>
+                <?php foreach ($film as $p) : ?>
+                    <div class="film">
+                        <!-- onclick="filmClick('The Shawshank Redemption')" -->
+                        <a href="<?= base_url('/dashboard/addreview/' . $p['idfilm']) ?>">
+                            <img src="<?= base_url('/assets/posters/' . $p['foto']); ?>" alt="Agak Laen">
+                        </a>
+                        <?php
+                        $idfilm = $p['idfilm'];
+                        $query = $this->db->query("
+    SELECT AVG(rating) AS average 
+    FROM review 
+    JOIN film ON review.idfilm = film.idfilm 
+    JOIN pengguna ON review.idpengguna = pengguna.idpengguna 
+    WHERE review.idfilm = ?", [$idfilm]);
+
+                        $result = $query->getRowArray();
+                        $average = $result['average'] ?? 0;
+                        $maxStars = 5;
+                        $fullStars = floor($average);
+                        $emptyStars = $maxStars - $fullStars;
+                        ?>
+                        <br>
+                        <br>
+                        <div class="star">
+                            <?php for ($i = 0; $i < $fullStars; $i++): ?>
+                                <i class='bx bxs-star'></i> <!-- Full star -->
+                            <?php endfor; ?>
+
+                            <?php for ($i = 0; $i < $emptyStars; $i++): ?>
+                                <i class='bx bx-star'></i> <!-- Empty star -->
+                            <?php endfor; ?>
+                        </div>
+                        <p class="film-title"><?= $p['judul'] ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>
     <footer>
         <ul>
-            <li><a href=""><i class='bx bxl-facebook-circle'></i></a></box-icon>
-            </li>
-            <li><a href=""><i class='bx bxl-tiktok'></i></a></li>
-            <li><a href=""><i class='bx bxl-instagram-alt'></i></a></li>
-            <li><a href=""><i class='bx bxl-youtube'></i></a></li>
+            <li><a href="https://www.tiktok.com/@morev6_?_t=8rpOLW0rMfp&_r=1"><i class='bx bxl-tiktok'></i></a></li>
+            <li><a href="https://www.instagram.com/morev_6?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class='bx bxl-instagram-alt'></i></a></li>
+            <li><a href="https://youtube.com/@morev-f2r?si=Sdk1sgYjfLgk6mdC"><i class='bx bxl-youtube'></i></a></li>
         </ul>
         <p>
             <small>Copyright © 2024 Morev. All rights reserved.</small>
