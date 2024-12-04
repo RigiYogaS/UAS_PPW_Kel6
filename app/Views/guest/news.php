@@ -4,6 +4,8 @@
     <title>Morev - News Page</title>
     <link rel="stylesheet" href="<?= base_url('/cssGuest/news.css?v=' . time()); ?>">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.webp') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,21 +24,25 @@
         <?php if (session()->get('isLoggedIn')) : ?>
             <ul>
                 <li><a href="<?= base_url('/dashboard/film'); ?>">Film</a></li>
-                <li><a href="<?= base_url('/dashboard/news'); ?>">Berita</a></li>
-                <li><a href="<?= base_url('/dashboard/review'); ?>">Review</a></li>
-                <li><a href="<?= base_url('/dashboard/about'); ?>">Tentang Kami</a></li>
+                <li><a href="<?= base_url('/dashboard/news'); ?>">News</a></li>
+                <li><a href="<?= base_url('/dashboard/review'); ?>">My Review</a></li>
+                <li><a href="<?= base_url('/dashboard/about'); ?>">About</a></li>
             </ul>
-            <div class="profile">
-                <ul>
-                    <li><a href="<?= base_url('/auth/logout'); ?>" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
-                </ul>
+            <div class="dropdownnav" style="padding-right:100px">
+                <b style="color:green"><?= ucfirst(session('username')) ?></b>
+                <div class="dropdownnav-content">
+                    <ul>
+                        <li><a href="<?= base_url('/auth/logout'); ?>" style="color:black" onclick="return confirm('Apakah Anda Yakin Ingin Keluar ?')">Logout</a></li>
+                    </ul>
+                </div>
             </div>
+
         <?php else : ?>
             <ul>
                 <li><a href="<?= base_url('/guest/film'); ?>">Film</a></li>
-                <li><a href="<?= base_url('/guest/news'); ?>">Berita</a></li>
+                <li><a href="<?= base_url('/guest/news'); ?>">News</a></li>
                 <li><a href="<?= base_url('/guest/review'); ?>">Review</a></li>
-                <li><a href="<?= base_url('/guest/about'); ?>">Tentang Kami</a></li>
+                <li><a href="<?= base_url('/guest/about'); ?>">About</a></li>
             </ul>
             <a href="<?= base_url('/auth/login'); ?>"><button type="button">Sign In</button></a>
         <?php endif; ?>
@@ -186,10 +192,9 @@
     <!-- FOoter -->
     <footer>
         <ul>
-            <li><a href=""><i class='bx bxl-facebook-circle'></i></a></li>
-            <li><a href=""><i class='bx bxl-tiktok'></i></a></li>
-            <li><a href=""><i class='bx bxl-instagram-alt'></i></a></li>
-            <li><a href=""><i class='bx bxl-youtube'></i></a></li>
+            <li><a href="https://www.tiktok.com/@morev6_?_t=8rpOLW0rMfp&_r=1"><i class='bx bxl-tiktok'></i></a></li>
+            <li><a href="https://www.instagram.com/morev_6?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class='bx bxl-instagram-alt'></i></a></li>
+            <li><a href="https://youtube.com/@morev-f2r?si=Sdk1sgYjfLgk6mdC"><i class='bx bxl-youtube'></i></a></li>
         </ul>
         <p>
             <small>Copyright © 2024 Morev. All rights reserved.</small>
